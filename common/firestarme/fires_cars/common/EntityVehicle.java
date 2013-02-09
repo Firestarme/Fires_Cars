@@ -56,13 +56,24 @@ public class EntityVehicle extends Entity{
 	}
 	
 	
-	 
+	 public void accelerate(float par1)
+	 {
+		 if( par1 > 0)
+		 {
+			 addSpeed(acceleration / 20);
+		 }
+		 else if(par1 < 0)
+		 {
+			 addSpeed(acceleration / -20);
+		 }
+		 
+	 }
      
 
      
 	
 	public void addSpeed(float Sp){
-		if(speed < maxSpeed){
+		if(speed < maxSpeed && speed > -0.5*maxSpeed){
 			speed = speed + Sp;
 		}
 	}
@@ -106,9 +117,13 @@ public class EntityVehicle extends Entity{
 	   
 		if(this.riddenByEntity != null){
 		
-			 this.motionX += this.riddenByEntity.motionX;
-             this.motionZ += this.riddenByEntity.motionZ;
+			double mountedX = this.riddenByEntity.motionX;
+			double mountedY = this.riddenByEntity.motionY;
 				
+			double resolvedMountedVector = Math.pow(mountedX, 2) * Math.pow(mountedY, 2);
+			
+			accelerate((float) resolvedMountedVector);
+			
 			
 			
 		if(this.rotationYaw > this.riddenByEntity.rotationYaw){
@@ -158,8 +173,10 @@ public class EntityVehicle extends Entity{
 			
 		}
 		move();
-		this.updateRiderPosition();
+		//this.updateRiderPosition();
 	   }
+	  
+	  
 
 	   public void move()
        {
@@ -167,6 +184,10 @@ public class EntityVehicle extends Entity{
                {
                        velocityZ = Math.cos(rotationYaw * 0.0174532925) * speed;
                        velocityX = Math.sin(rotationYaw* 0.0174532925) * -speed;
+
+            	   
+            	   
+            	   
                        if(isCollidedHorizontally)             
                        {
                                velocityY = -fallSpeed;               

@@ -30,8 +30,8 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    int Length = 10;
 	    
 	    
-	    GenSliceX(X,Y,Z,world,Oil,8,6,9);
-	    
+	    //GenSliceX(X,Y,Z,world,Oil,8,6,9);
+	    GenVertLine(X,Y,Z,world,10,2,Brine);
 	    
 	    
 	    
@@ -45,7 +45,7 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    {
 	    	int block;
 	    	
-	    	if(Y > liquidLv)
+	    	if(Y < liquidLv)
 	    	{
 	    		block = liquid;
 	    	}
@@ -57,7 +57,7 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    	return block;
 	    }
 	    
-	    public void GenKeyLineX(int X,int Y,int Z,World world,int Length,int content)
+	    private void GenKeyLineX(int X,int Y,int Z,World world,int Length,int content)
 	    {
 	    	
 	    	for(int i = 0;i < Length;i ++)
@@ -78,7 +78,7 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    
 	    }
 	    
-	    public void GenKeyLineZ(int X,int Y,int Z,World world,int Length,int content)
+	    private void GenKeyLineZ(int X,int Y,int Z,World world,int Length,int content)
 	    {
 	    	
 	    	for(int i = 0;i < Length;i ++)
@@ -98,45 +98,32 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    	world.setBlockAndMetadataWithNotify(X,Y,Z,PorousID,content);
 	    
 	    }
+	    
+	    private void GenVertLine(int X,int Y,int Z,World world,int length,int liquidLv,int liquid)
+	    {
+	    	
+	    	world.setBlockAndMetadataWithNotify(X, Y, Z, PorousID, Imperm);
+	    	
+	    	for(int i = 1; i < length + 1; i ++)
+	    	{
+	    		world.setBlockAndMetadataWithNotify(X, Y + i, Z, PorousID, isFilled(liquid,liquidLv,length - i));
+	    	}	
+	    	
+	    	world.setBlockAndMetadataWithNotify(X, Y + length + 1, Z, PorousID, Imperm);
+	    }
 
 	    public void GenSliceX(int X,int Y,int Z,World world,int liquid,int liquidLv,int Height,int Width)
 	    {
+	    	int HeightSegment = Height / 4;
 	    	
-	    	int SegmentHeight = Height / 3;
-	    	int BuildY = Height + Y;
-	    	int count = 0;
-	    	int TopWidth = (1/2)*SegmentHeight+1*SegmentHeight+2*SegmentHeight;
-	    	int buildWidth = TopWidth;
+	    	for(int i = 0; i < Width / 2; i ++ )
+	    	{
+	    		
+	    		
+	    		
+	    	}
 	    	
-	    	GenKeyLineX(X,BuildY,Z,world,TopWidth,Imperm);
-		    
-		    BuildY --;
-		    
-		    for(;BuildY > 2*SegmentHeight;BuildY--)
-		    {
-		    	buildWidth += 2;
-		    	GenKeyLineX(X,BuildY,Z,world,buildWidth-1,isFilled(liquid,liquidLv,BuildY));
-		    	world.setBlockAndMetadataWithNotify(X+buildWidth, BuildY, Z, PorousID, Imperm);
-		    	world.setBlockAndMetadataWithNotify(X-buildWidth, BuildY, Z, PorousID, Imperm);
-		    }
-	    	
-		    for(;BuildY > SegmentHeight;BuildY--)
-		    {
-		    	buildWidth ++ ;
-		    	GenKeyLineX(X,BuildY,Z,world,buildWidth,isFilled(liquid,liquidLv,BuildY));
-		    }
-		    
-		    for(;BuildY > Y;BuildY--)
-		    {
-		    	GenKeyLineX(X,BuildY,Z,world,buildWidth,isFilled(liquid,liquidLv,BuildY));
-		    	count ++;
-		    	if(count == 2){
-		    		count = 0;
-		    		buildWidth ++ ;
-		    	}
-		    }
 	    }
-
 
 }
 	    

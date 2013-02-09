@@ -35,7 +35,7 @@ public class EntityCar extends EntityVehicle {
 
 	public EntityCar(World par1World,double X,double Y,double Z){
 		this(par1World);
-        this.setPosition(X, Y + (double)this.yOffset, Z);
+        this.setPosition(X, Y + (double)this.yOffset + 2, Z);
         this.motionX = 0.0D;
         this.motionY = 0.0D;
         this.motionZ = 0.0D;
@@ -80,6 +80,7 @@ public class EntityCar extends EntityVehicle {
         {
             double var1 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             double var3 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+        	
             this.riddenByEntity.setPosition(this.posX + var1, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), var3);
         }
     }
