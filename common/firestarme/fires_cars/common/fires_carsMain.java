@@ -73,6 +73,8 @@ public class fires_carsMain extends BaseMod{
 		LanguageRegistry.addName(Car, "Car");
 		Item.itemsList[CarID] = Car;
 		
+		GameRegistry.registerWorldGenerator(new WorldGenFires_Cars());
+		
 		
 		}
 		
