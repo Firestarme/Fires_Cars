@@ -25,6 +25,9 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	            --Y;
 	        }
 	    
+	    if(par2Random.nextInt(200)==0)
+	    {
+	        
 	    int Liquid;
 	    
 	    if(par2Random.nextInt(100) > 75)
@@ -39,8 +42,6 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	   int  Height = par2Random.nextInt(25) + 5;
 	   int  LiquidLv = par2Random.nextInt(Height -4) +4;
 	    
-	    GenResivoirX(X,Y,Z,world,Brine,8,15);
-	    
 	    if(par2Random.nextBoolean())
 	    {
 	    	GenResivoirX(X,1,Z,world,Liquid,LiquidLv,Height);
@@ -52,7 +53,7 @@ public class WorldGenOilResivoir extends WorldGenerator {
 	    
 	    System.out.println("resivoirGen: X="+X+" Y="+Y+" Z="+Z);
 	    
-	    
+	    }
 	    return true;
 	    } 
 	    
