@@ -42,12 +42,14 @@ public class fires_carsMain extends BaseMod{
 		public static int porousRockID = 201;
 		public static int CarID = 1001;
 		public static int TestID = 202;
+		public static int MachineID = 203;
 		public static Block Road;
 		public static Block Test;
 		public static Item Brush;
 		public static Item Car;
 		public static Render carR = new RenderCar();
 		public static Block pourousRock;
+		public static Block Machine;
 		@PreInit
 		public void preInit(FMLPreInitializationEvent event) {
 			
@@ -61,6 +63,8 @@ public class fires_carsMain extends BaseMod{
 		pourousRock = BlockPorousRock.addBlock(porousRockID);
 		
 		Test = BlockTest.addBlock(TestID);
+		
+		Machine = BlockMachine.addBlock(MachineID);
 		
 		Brush = (new ItemBrush(BrushID,0)).setItemName("paint brush");
 		LanguageRegistry.addName(Brush, "Paint Brush");
