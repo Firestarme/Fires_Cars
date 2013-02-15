@@ -40,7 +40,7 @@ public class BlockMachine extends Block{
 		return block;
 	}
 	
-	public TileEntity createNewTileEntity(World var1)
+	public TileEntity createTileEntity(World var1,int meta)
 	{
 		return new TileEntityMachine();
 	
@@ -56,4 +56,10 @@ public class BlockMachine extends Block{
     {
         return false;
     }
+    
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
+    }
+    
 }

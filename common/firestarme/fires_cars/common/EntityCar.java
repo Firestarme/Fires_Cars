@@ -27,9 +27,9 @@ public class EntityCar extends EntityVehicle {
 		this.dropItem(fires_carsMain.CarID, 1);
         this.yOffset = this.height / 2.0F;
         this.setSize(0.9F*2, 0.9F*2);
-        this.acceleration = 0.2F;
+        this.acceleration = 0.02F;
 		this.isOffroad = false;
-		this.maxSpeed = 5;
+		this.maxSpeed = 1;
 		this.climbAcceleration = 0;
 	}
 
@@ -69,21 +69,12 @@ public class EntityCar extends EntityVehicle {
 	}
 
 	
-//public double getMountedYOffset()
-	//{
-	        //return (double)this.height * 0.0D - 0.30000001192092896D;
-	//}
+	public double getMountedYOffset()
+		{
+	        return (double)this.height * 0.0D - 0.30000001192092896D;
+		}
 	
-	public void updateRiderPosition()
-    {
-        if (this.riddenByEntity != null)
-        {
-            double var1 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-            double var3 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-        	
-            this.riddenByEntity.setPosition(this.posX + var1, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), var3);
-        }
-    }
+	
 }
 	
     

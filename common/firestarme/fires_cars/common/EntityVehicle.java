@@ -117,14 +117,18 @@ public class EntityVehicle extends Entity{
 	   
 		if(this.riddenByEntity != null){
 		
-			double mountedX = this.riddenByEntity.motionX;
-			double mountedY = this.riddenByEntity.motionY;
-				
-			double resolvedMountedVector = Math.pow(mountedX, 2) * Math.pow(mountedY, 2);
+		if(firesKeyHandler.Accelerate && firesKeyHandler.Brake == false )
+		{
+			accelerate(acceleration);
 			
-			accelerate((float) resolvedMountedVector);
+		}
+		else if(firesKeyHandler.Accelerate == false && firesKeyHandler.Brake )
+		{
+			accelerate(-acceleration);
 			
+		}
 			
+		this.updateRiderPos(this.posX,this.posY,this.posZ);
 			
 		if(this.rotationYaw > this.riddenByEntity.rotationYaw){
 			
@@ -194,7 +198,7 @@ public class EntityVehicle extends Entity{
                        }
                        
                       this.motionX  += velocityX;
-                      this.motionY = 0;
+                      this.motionY += velocityY;
                       this.motionZ += velocityZ;
                        
                        
@@ -242,6 +246,15 @@ public class EntityVehicle extends Entity{
 	    {
 	       return this.boundingBox;
 	    }
+	    
+	    public void updateRiderPos(double posX, double posY, double posZ)
+		{
+			
+	    	
+	    	this.riddenByEntity.setPosition(posX, posY + this.getYOffset(), posZ);
+			
+			
+		}
 }
 
 

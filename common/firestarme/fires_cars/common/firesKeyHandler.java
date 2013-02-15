@@ -12,19 +12,19 @@ import net.minecraft.src.ModLoader;
 public class firesKeyHandler extends KeyHandler{
 	
 	public static int currentKey = 0;
+	public static boolean Accelerate;
+	public static boolean Brake;
 
 	static KeyBinding KeyBind[] = { 
-		new KeyBinding("forward", Keyboard.KEY_W), 
-		new KeyBinding("back", Keyboard.KEY_S),
-		new KeyBinding("left", Keyboard.KEY_A),
-		new KeyBinding("Right", Keyboard.KEY_D) 
+		new KeyBinding("Accelerate", Keyboard.KEY_C),
+		new KeyBinding("Brake", Keyboard.KEY_Z)
 		};
 
+		
 	
-	public firesKeyHandler(KeyBinding[] keyBindings, boolean[] repeatings) {
-		super(KeyBind,new boolean[]{false});
+	public firesKeyHandler(KeyBinding[] keyBindings) {
+		super(KeyBind,new boolean[]{false,false});
 	}
-
 
 
 	@Override
@@ -35,14 +35,37 @@ public class firesKeyHandler extends KeyHandler{
 	@Override
 	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
 	
-		currentKey = kb.keyCode;
+		switch(kb.keyCode)
+		{
+		case Keyboard.KEY_Z :
+			Brake = true;
+			break;
+			
+		case Keyboard.KEY_C :
+			Accelerate = true;
+			break;
+		
+		}
+		
+		
+		
 		
 	}
 
 	@Override
 	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
 		
-		currentKey = 0;
+		switch(kb.keyCode)
+		{
+		case Keyboard.KEY_Z :
+			Brake = false;
+			break;
+			
+		case Keyboard.KEY_C :
+			Accelerate = false;
+			break;
+		
+		}
 		
 	}
 

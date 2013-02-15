@@ -78,7 +78,9 @@ public class fires_carsMain extends BaseMod{
 		Item.itemsList[CarID] = Car;
 		
 		GameRegistry.registerWorldGenerator(new WorldGenFires_Cars());
+		ModLoader.registerTileEntity(TileEntityMachine.class, "Machine", new RenderMachine() );
 		
+		fires_carsCommonProxy.registerKeyBindingHandler();
 		
 		}
 		
@@ -91,7 +93,7 @@ public class fires_carsMain extends BaseMod{
 		@Override
 		public String getVersion() {
 			// TODO Auto-generated method stub
-			return null;
+			return "0.1";
 		}
 
 		@Override
